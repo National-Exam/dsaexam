@@ -96,6 +96,7 @@ void createHeaderLine (string filename) {
   infile.close();
 
 }
+// This function will add items to csv file.
 void addItem( string item_id, string item_name, string item_quantiry,string item_registration_date, string fileName)
 {
        string data =item_id + "," + item_name + "," + item_quantiry + "," + item_registration_date;
