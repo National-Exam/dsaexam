@@ -170,7 +170,7 @@ void listItems(const string& filename, int sortColumn) {
      int headerIndex = 0;
     for (const auto& rowData : data) {
         for (const auto& value : rowData) {            
-            cout << headers[headerIndex] << ": " << value << "  ";
+            cout  <<  headers[headerIndex] << " :" <<  setw(7) << left << value << " ";
             headerIndex++;
         }
         headerIndex = 0;
