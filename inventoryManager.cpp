@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <ctime>
 #include <iomanip>
 #include<fstream>
 #include <vector>
@@ -97,8 +96,9 @@ void createHeaderLine (string filename) {
   infile.close();
 
 }
-void addItem( string data, string fileName)
+void addItem( string item_id, string item_name, string item_quantiry,string item_registration_date, string fileName)
 {
+       string data =item_id + "," + item_name + "," + item_quantiry + "," + item_registration_date;
         createHeaderLine(fileName);
         ofstream outputFile;
         outputFile.open(fileName, ios::app);
@@ -206,20 +206,19 @@ int main()
         continue;
     }   
     else if (splitString(command)[0] == "itemadd"){
-        vector<string> itemData = splitString(command);
-        string itemDataString =itemData[1] + "," + itemData[2] + "," + itemData[3] + "," + itemData[4];
+        vector<string> itemData = splitString(command);        
         bool valid = validateItemData(itemData); 
         if(!valid){
            cout << "Please input valid data in this format: item Id: number,item name: text, quantity: number, date: year-month-day \n";
         }
         else{
-         addItem(itemDataString,"items.csv");
+         addItem(itemData[1],itemData[2],itemData[3],itemData[4],"items.csv");
          cout << "Item recorded successfully" << endl;
         }
         
     }
     else if (splitString(command)[0] == "itemslist"){
-       listItems("items.csv",0);               
+       listItems("items.csv",1);               
     }   
     else if(command != "exit")
     {
@@ -230,3 +229,8 @@ int main()
 
     return 0;
 }
+
+
+// improvements
+// I will need to check if an item with id already exists and notify the user.
+// Improve the algorithm and run time.
